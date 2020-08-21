@@ -8,11 +8,13 @@ from sklearn.cluster import KMeans
 import cv2 as cv
 import numpy as np
 
+# GUI window frame
 root = Tk()
 root.title("Pro Image Viewer")
-#root.geometry("500x500")
+# root.geometry("500x500")
 root.minsize(500, 500)
 
+# Sub frames
 toolframe = LabelFrame(root, text="Toolbar")
 imageframe = LabelFrame(root, bg="black")
 funcbar = LabelFrame(root)
@@ -26,6 +28,7 @@ global curr
 
 curr = 0
 
+# List of compression options
 firstcall = True
 pil_images = []
 image_locs = []
@@ -47,21 +50,14 @@ comp_val = 1000
 
 
 def blank():
+    ''' trail function'''
     print(imageframe.winfo_width())
     print(imageframe.winfo_height())
     print(int(combo.get()))
 
 
 def imageNow(pil_img):
-
-    global cover_img_lbl
-    removeCurrent()
-    cover_img_lbl = Label(imageframe, image=pil_img, bd=0)
-    cover_img_lbl.pack(expand=True)
-
-
-def imageNow1(pil_img):
-
+    ''' displays current image'''
     global cover_img_lbl
     removeCurrent()
     cover_img_lbl = Label(imageframe, image=pil_img, bd=0)
@@ -88,6 +84,7 @@ def convertToTkimg(pil_img_list):
 
 
 def exploreImages():
+    ''' gets images from location and stores as PIL objects'''
     global temp_list
     global preview
 
@@ -110,6 +107,7 @@ def exploreImages():
 
 
 def btnPack(image_number):
+    '''Places buttons on the screen'''
     global firstcall
     global curr
     if firstcall == True:
@@ -149,6 +147,7 @@ def next(image_number):
 
 
 def saveThis(save_img):
+    ''' save passed image  to desired loc '''
     file_loc = filedialog.asksaveasfilename(
         defaultextension=".png", initialdir="C:/Users/Prakhar Sahu/Pictures/Saved Pictures")
     save_img.save(file_loc)
@@ -204,6 +203,7 @@ def rightRotate():
 
 
 def carousel(n):
+    #
     global curr
     global k
     global cover_img_lbl
